@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!--left the html code unchanged-->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -18,3 +19,17 @@
     </main>
 </body>
 </html>
+
+<!-- I could not figure out how to get the api data to be displayed
+ so I asked chat gpt to debug it and said I needed this block below-->
+<h2>Trademark API Data</h2>
+<ul>
+    {% for trademark_name, serial_number, owner, status, filing_date, registration_date in api_data %}
+        <li>
+            <strong>{{ trademark_name }}</strong> — {{ status }}<br>
+            Serial: {{ serial_number }} | Owner: {{ owner }}<br>
+            Filed: {{ filing_date }} | Registered: {{ registration_date }}
+        </li>
+    {% endfor %}
+</ul>
+
