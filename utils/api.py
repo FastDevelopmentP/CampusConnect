@@ -40,19 +40,13 @@ class TrademarkAPIClient:
             f"/password/{self.password}"
         )
 
-        # Show the exact URL
-        print("Requesting MarkerAPI URL:", url)
-
         # Send the request to MarkerAPI
         response = requests.get(url, timeout=10)
-
-        # Debug prints 
-        print("MarkerAPI status code:", response.status_code)
-        print("MarkerAPI raw text (first 500 chars):")
-        print(response.text[:500])
-
-        # Raise if error
-        response.raise_for_status()
+        if not response.ok:
+            # Do not include the request URL because it contains credentials.
+            raise RuntimeError(
+                f"MarkerAPI request failed with status {response.status_code}"
+            )
 
         # Attept to parse JSON
         try:

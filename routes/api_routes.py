@@ -31,8 +31,9 @@ def api():
                 start=1,
             )
             client.run()
-        except Exception as e:
-            print("Error running TrademarkAPIClient:", e)
+        except Exception:
+            # Request exceptions may include a credential-bearing URL.
+            print("Error running TrademarkAPIClient; using seed data only.")
 
     conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
